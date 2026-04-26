@@ -9,7 +9,7 @@ int longestIncreasingSubsequence(vector<int>&nums){
     for(int i=1; i<n; i++){
         if(nums[i] >= temp.back()) temp.push_back(nums[i]);
         else{
-            int ind = lower_bound(temp.begin(), temp.end(), nums[i]);
+            int ind = lower_bound(temp.begin(), temp.end(), nums[i]);  //lower bound function give me the first greater or equal to element to the nums[i]...it helps to find position of nums[i] int temp
             temp[ind] = nums[i];
         }
     }
