@@ -1,0 +1,72 @@
+class Edge{
+    public :
+        int u,v,wt;
+        Edge(int u, int v, int wt){
+            this->u = u;
+            this->v = v;
+            this->wt = wt;
+        }
+
+        bool operator<(Edge const &e){
+            return this->wt < e.wt;
+        }
+
+};
+
+class Graph{
+    public :
+        vector<Edge> edges;
+        vector<int>parent;
+        vector<int>rank;
+        int V;
+        Graph(int V){
+            this->V = V;
+            parent.resize(V);
+            rank.resize(V, 0);
+            for(int i = 0; i < V; i++){
+                parent[i] = i;
+            }
+        }
+        void addEdge(int u, int v, int wt){
+            Edge e(u,v,wt);
+            edges.push_back(e);
+        }
+
+        int find(int u){
+            if(parent[u] == u) return u;
+            return parent[u] = find(parent[u]);
+        }
+
+        void unionByRank(int u, int v){
+            u = find(u);
+            v = find(v);
+            if(rank[u] < rank[v]){
+                parent[u] = v;
+            }
+            else if(rank[v] < rank[u]){
+                parent[v] = u;
+            }
+            else{
+                parent[v] = u;
+                rank[u]++;
+            }
+        }
+
+        void kruskal(){
+            sort(edges.begin(), edges.end());
+            int mstCost = 0;
+
+            for(int i=0; i<edges.size(); i++){
+                int u = edges[i].u;
+                int v = edges[i].v;
+                int wt = edges[i].wt;
+
+                if(find(u) != find(v)){
+                    mstCost += wt;
+                    unionByRank(u,v);
+                }
+            }
+            cout << "Minimum Spanning Tree Cost: " << mstCost << endl;
+        }
+
+};
