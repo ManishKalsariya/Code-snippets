@@ -78,3 +78,7 @@ Time Complexity:
             //         adj[j].push_back(i);
             //     }
             // }
+
+            //it uses dfs to find the number of connected components in the graph, 
+            // and then we can remove all the stones except one from each connected 
+            // component, so the answer will be number of stones - number of connected components.
