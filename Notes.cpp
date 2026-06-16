@@ -66,3 +66,15 @@ Time Complexity:
 
 =========================================
 */
+
+// leetcode 947 : https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/
+
+//for adjacency list : 
+            // for(int j = i + 1; j < n; j++) {
+            //     if(stones[i][0] == stones[j][0] ||
+            //        stones[i][1] == stones[j][1]) {
+
+            //         adj[i].push_back(j);
+            //         adj[j].push_back(i);
+            //     }
+            // }
