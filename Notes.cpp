@@ -82,3 +82,21 @@ Time Complexity:
             //it uses dfs to find the number of connected components in the graph, 
             // and then we can remove all the stones except one from each connected 
             // component, so the answer will be number of stones - number of connected components.
+
+
+// for doing DP on any problem, we can use the following steps:
+    // 1. express problem in terms of index
+    // 2. do every required stuffs with index (like take, not take, etc.)
+    // 3. return the answer ( like max, min, (take + not take), etc.)
+    // 4. write base case for index
+
+    // for memoization ( top-down DP):
+    // 1. create a dp array of size (index + 1) and initialize it with -1
+    // 2. check if dp[index] != -1, then return dp[index]
+    // 3. store the answer in dp[index] before returning it
+
+    // for tabulation ( bottom-up DP):
+    // 1. create a dp array of size (index + 1) and initialize it with 0
+    // 2. write the base case for index in dp array
+    // 3. write a for loop from 1 to index and fill the dp array with the answer
+    // 4. return dp[index]
