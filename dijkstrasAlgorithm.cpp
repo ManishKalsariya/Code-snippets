@@ -1,9 +1,12 @@
+// dijkstra's algorithm to find the shortest path from a source vertex to
+//  all other vertices in a graph
+
 class Solution {
   public:
   
     vector<int> helper(vector<vector<pair<int,int>>>&adj, int v, int src){
         priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>> >pq;
-        pq.push({0,src});
+        pq.push({0,src}); // dist, node
         vector<int>dist(v,INT_MAX);
         dist[src] = 0;
         
