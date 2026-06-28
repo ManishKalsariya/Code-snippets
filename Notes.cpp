@@ -445,3 +445,368 @@ THINK:
         CATALAN NUMBER
 
 *****************************************************************************************/
+
+
+// # LeetCode 2527 - Find Xor-Beauty of Array
+
+// ## Problem
+
+// For every triplet `(i, j, k)`:
+
+// ```cpp
+// effective value = ((nums[i] | nums[j]) & nums[k])
+// ```
+
+// The xor-beauty of the array is the XOR of all such effective values.
+
+// Return the xor-beauty.
+
+// ---
+
+// # Example
+
+// ```cpp
+// Input: nums = [1,4]
+
+// Output: 5
+// ```
+
+// ---
+
+// # First Observation
+
+// The brute force solution would be:
+
+// ```cpp
+// for(i)
+//     for(j)
+//         for(k)
+//             ans ^= ((nums[i] | nums[j]) & nums[k]);
+// ```
+
+// Time Complexity:
+
+// ```text
+// O(n³)
+// ```
+
+// Since:
+
+// ```text
+// n ≤ 100000
+// ```
+
+// This is impossible.
+
+// ---
+
+// # XOR Properties
+
+// ## 1. Same numbers cancel
+
+// ```text
+// x ^ x = 0
+// ```
+
+// Example:
+
+// ```text
+// 5 ^ 5 = 0
+// ```
+
+// ---
+
+// ## 2. XOR with 0
+
+// ```text
+// x ^ 0 = x
+// ```
+
+// ---
+
+// ## 3. XOR is commutative
+
+// ```text
+// a ^ b = b ^ a
+// ```
+
+// ---
+
+// # Main Intuition
+
+// The expression is:
+
+// ```text
+// ((nums[i] | nums[j]) & nums[k])
+// ```
+
+// Consider two cases.
+
+// ---
+
+// ## Case 1 : i ≠ j
+
+// Observe:
+
+// ```text
+// (nums[i] | nums[j])
+// =
+// (nums[j] | nums[i])
+// ```
+
+// Therefore:
+
+// ```text
+// ((nums[i] | nums[j]) & nums[k])
+
+// and
+
+// ((nums[j] | nums[i]) & nums[k])
+// ```
+
+// produce exactly the same value.
+
+// Since both values appear in the final XOR:
+
+// ```text
+// x ^ x = 0
+// ```
+
+// they cancel each other.
+
+// So all terms having:
+
+// ```text
+// i ≠ j
+// ```
+
+// disappear.
+
+// ---
+
+// ## Case 2 : i = j
+
+// Then:
+
+// ```text
+// (nums[i] | nums[i])
+// ```
+
+// becomes:
+
+// ```text
+// nums[i]
+// ```
+
+// because:
+
+// ```text
+// x | x = x
+// ```
+
+// Thus:
+
+// ```text
+// ((nums[i] | nums[i]) & nums[k])
+
+// = nums[i] & nums[k]
+// ```
+
+// ---
+
+// Now consider:
+
+// ```text
+// i ≠ k
+// ```
+
+// Then:
+
+// ```text
+// nums[i] & nums[k]
+// ```
+
+// and
+
+// ```text
+// nums[k] & nums[i]
+// ```
+
+// are identical.
+
+// Again:
+
+// ```text
+// x ^ x = 0
+// ```
+
+// Therefore these terms also cancel.
+
+// ---
+
+// Only one case survives:
+
+// ```text
+// i = j = k
+// ```
+
+// The effective value becomes:
+
+// ```text
+// (nums[i] | nums[i]) & nums[i]
+
+// = nums[i] & nums[i]
+
+// = nums[i]
+// ```
+
+// Thus only:
+
+// ```text
+// nums[0]
+// nums[1]
+// nums[2]
+// ...
+// nums[n-1]
+// ```
+
+// remain.
+
+// Hence:
+
+// ```text
+// answer = nums[0] ^ nums[1] ^ nums[2] ^ ... ^ nums[n-1]
+// ```
+
+// ---
+
+// # Final Formula
+
+// ```cpp
+// xorBeauty = XOR of all elements
+// ```
+
+// ---
+
+// # Dry Run
+
+// ```cpp
+// nums = [1,4]
+// ```
+
+// Answer:
+
+// ```text
+// 1 ^ 4 = 5
+// ```
+
+// ---
+
+// ```cpp
+// nums = [15,45,20,2,34,35,5,44,32,30]
+// ```
+
+// Perform XOR of all numbers:
+
+// ```text
+// = 34
+// ```
+
+// ---
+
+// # Algorithm
+
+// 1. Initialize answer = 0.
+// 2. Traverse the array.
+// 3. XOR every number with answer.
+// 4. Return answer.
+
+// ---
+
+// # Complexity Analysis
+
+// ### Time Complexity
+
+// ```text
+// O(n)
+// ```
+
+// Only one traversal.
+
+// ---
+
+// ### Space Complexity
+
+// ```text
+// O(1)
+// ```
+
+// No extra space.
+
+// ---
+
+// # C++ Code
+
+// ```cpp
+// class Solution {
+// public:
+//     int xorBeauty(vector<int>& nums) {
+
+//         int ans = 0;
+
+//         // XOR every element
+//         for (int num : nums) {
+//             ans ^= num;
+//         }
+
+//         return ans;
+//     }
+// };
+// ```
+
+// ---
+
+// # Important Bit Properties Used
+
+// ```cpp
+// x ^ x = 0
+// x ^ 0 = x
+
+// x | x = x
+// x & x = x
+
+// a | b = b | a
+// a & b = b & a
+// ```
+
+// ---
+
+// # Key Observation
+
+// > Every term appears exactly twice and cancels out, except when:
+
+// ```text
+// i = j = k
+// ```
+
+// Therefore:
+
+// ```cpp
+// answer = XOR of all elements.
+// ```
+
+// ---
+
+// # One-Line Solution
+
+// ```cpp
+// class Solution {
+// public:
+//     int xorBeauty(vector<int>& nums) {
+//         int ans = 0;
+//         for(int x : nums)
+//             ans ^= x;
+//         return ans;
+//     }
+// };
+// ```
