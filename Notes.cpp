@@ -810,3 +810,41 @@ THINK:
 //     }
 // };
 // ```
+
+
+// for finding Longest Increasing Subsequence till index i of an array,
+    vector<int> LIS(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> lis(n, 1);
+
+        for (int i = 0; i < n; i++) {
+            for (int prev = 0; prev < i; prev++) {
+                if (nums[prev] < nums[i]) {
+                    lis[i] = max(lis[i], lis[prev] + 1);
+                }
+            }
+        }
+
+    
+
+        return lis;
+    }
+
+// for finding Longest Decreasing Subsequence starting from index i of an array,
+
+    vector<int> LDS(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> lds(n, 1);
+
+        for (int i = n - 1; i >= 0; i--) {
+            for (int next = n - 1; next > i; next--) {
+                if (nums[next] < nums[i]) {
+                    lds[i] = max(lds[i], lds[next] + 1);
+                }
+            }
+        }
+
+        return lds;
+    }
+
+    //both LIS and LDS can be used to find Longest Bitonic Subsequence in an array. leetcode 1671
