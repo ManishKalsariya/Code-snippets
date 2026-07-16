@@ -848,3 +848,14 @@ THINK:
     }
 
     //both LIS and LDS can be used to find Longest Bitonic Subsequence in an array. leetcode 1671
+
+
+    //minimum swaps to sort an array can be found using the following approach:
+    //1. create a vector of pairs, where each pair contains the element and its original index.
+    //2. sort the vector of pairs based on the first element of the pair (the array element).
+    //3. create a visited array to keep track of visited elements.
+    //4. for each element in the sorted vector, if it is not visited and not in the correct position, find the cycle size and add (cycle_size - 1) to the answer.
+    //5. return the answer.
+    //this approach works because each cycle of misplaced elements can be sorted with (cycle_size - 1) swaps.
+    //time complexity is O(n log n) due to sorting, and space complexity is O(n) for the visited array and the vector of pairs.
+    //this approach can be used to solve problems like minimum swaps to sort an array, minimum swaps to make a binary string alternate, etc.
