@@ -859,3 +859,16 @@ THINK:
     //this approach works because each cycle of misplaced elements can be sorted with (cycle_size - 1) swaps.
     //time complexity is O(n log n) due to sorting, and space complexity is O(n) for the visited array and the vector of pairs.
     //this approach can be used to solve problems like minimum swaps to sort an array, minimum swaps to make a binary string alternate, etc.
+
+
+    cycle detection in graphs:
+    
+    undirected graph :
+    1. bfs : here we can use a queue to perform a breadth-first search and check for cycles by keeping track of visited nodes and their parents. If we encounter a visited node that is not the parent of the current node, then a cycle exists.
+    2. dfs : here we can use a recursive depth-first search and check for cycles by keeping track of visited nodes and their parents. If we encounter a visited node that is not the parent of the current node, then a cycle exists.
+    3. disjoint set union (dsu) : here we can use the disjoint set union data structure to detect cycles in an undirected graph. If we try to union two nodes that are already in the same set, then a cycle exists.
+
+    directed graph : 
+    1.bfs : here we can use Kahn's algorithm for topological sorting. If we cannot include all nodes in the topological order (i.e., there are nodes with non-zero in-degrees left), then a cycle exists.
+    2. dfs : here we can use a recursive depth-first search and keep track of the recursion stack. If we encounter a node that is already in the recursion stack, then a cycle exists.
+    3. kahn's algorithm (topological sort) : here we can use Kahn's algorithm for topological sorting. If we cannot include all nodes in the topological order (i.e., there are nodes with non-zero in-degrees left), then a cycle exists.
