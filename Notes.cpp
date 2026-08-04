@@ -872,3 +872,8 @@ THINK:
     1.bfs : here we can use Kahn's algorithm for topological sorting. If we cannot include all nodes in the topological order (i.e., there are nodes with non-zero in-degrees left), then a cycle exists.
     2. dfs : here we can use a recursive depth-first search and keep track of the recursion stack. If we encounter a node that is already in the recursion stack, then a cycle exists.
     3. kahn's algorithm (topological sort) : here we can use Kahn's algorithm for topological sorting. If we cannot include all nodes in the topological order (i.e., there are nodes with non-zero in-degrees left), then a cycle exists.
+
+
+    TopoLogical sorting is used for directed acyclic graphs (DAGs) to order the vertices such that for every directed edge u -> v, vertex u comes before vertex v in the ordering. It can be used in various applications like task scheduling, resolving dependencies, and more.
+
+    in DAG (directed acyclic graph), there is atleast one node with in-degree 0 and atleast one node with out-degree 0. This is because if all nodes had in-degree > 0, there would be a cycle, which contradicts the definition of a DAG. Similarly, if all nodes had out-degree > 0, there would also be a cycle. Therefore, in a DAG, there must be at least one node with in-degree 0 (a source) and at least one node with out-degree 0 (a sink).
