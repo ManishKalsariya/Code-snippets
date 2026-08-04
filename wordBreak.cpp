@@ -44,3 +44,51 @@ public:
         return dp[n];
     }
 };
+
+
+//WORD BREAK PROBLEM USING PARTITION DP APPROACH
+
+#include <iostream>
+#include <string>
+#include <vector>
+#include <unordered_set>
+
+using namespace std;
+
+class Solution {
+    int f(int i, int j, string& s, unordered_set<string>& wordSet, vector<vector<int>>& dp) {
+        // Return cached result if already computed
+        if (dp[i][j] != -1) return dp[i][j];
+
+        // Extract current substring s[i...j]
+        string sub = s.substr(i, j - i + 1);
+
+        // Base Case: If the entire substring is directly present in the dictionary
+        if (wordSet.count(sub)) return dp[i][j] = 1;
+
+        // Partition Loop: Try splitting s[i...j] at every point k
+        for (int k = i; k < j; k++) {
+            bool left  = f(i, k, s, wordSet, dp);
+            bool right = f(k + 1, j, s, wordSet, dp);
+
+            // If both left and right sub-problems are valid, this partition works!
+            if (left && right) {
+                return dp[i][j] = 1;
+            }
+        }
+
+        return dp[i][j] = 0;
+    }
+
+public:
+    bool wordBreak(string s, vector<string>& wordDict) {
+        int n = s.length();
+        unordered_set<string> wordSet(wordDict.begin(), wordDict.end());
+        
+        // dp[i][j] stores whether s[i...j] can be broken into valid words
+        // -1: Unvisited, 0: False, 1: True
+        vector<vector<int>> dp(n, vector<int>(n, -1));
+
+        return f(0, n - 1, s, wordSet, dp) == 1;
+    }
+};
