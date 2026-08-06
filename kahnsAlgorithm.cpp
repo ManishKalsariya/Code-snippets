@@ -49,5 +49,7 @@ void kahnsAlgorithm(int V, vector<vector<int>>& edges) {
         }
         cout << endl;
     }
+
+    
 }
 
