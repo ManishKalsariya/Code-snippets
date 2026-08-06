@@ -19,7 +19,7 @@ class DisjointSet {
         if(parent[x] == x){
             return x;
         }
-        return find(parent[x]);
+        return parent[x] = find(parent[x]);
     }
 
     void unionByRank(int a, int b){
