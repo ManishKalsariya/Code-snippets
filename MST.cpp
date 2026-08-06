@@ -1,0 +1,1 @@
+// minimum spanning tree (MST) : it is a subset of edges of a connected, edge-weighted undirected graph that connects all the vertices together, without any cycles and with the minimum possible total edge weight.
